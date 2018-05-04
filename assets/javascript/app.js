@@ -110,6 +110,18 @@ $(document).ready(function () {
         //iterate through questionlist and display the questions on the screen
         for (i = 0; i < questionList.length; i++) {
             arr += "<h4>" + questionList[i].q + "</h4>"
+            var radio1 = '<label>'+ questionList[i].opts[0] +'<input type="radio" value="'+questionList[i].opts[0]+'" class="'+questionList[i].q+'" name="'+questionList[i].q+'"></label>'
+
+            var radio2 = '<label>'+questionList[i].opts[1]+'<input type="radio" value="'+questionList[i].opts[1]+'" class="'+questionList[i].q+'" name="'+questionList[i].q+'"> </label>'
+
+            var radio3 = '<label>'+questionList[i].opts[2]+'<input type="radio" value="'+questionList[i].opts[2]+'" class="'+questionList[i].q+'" name="'+questionList[i].q+'"> </label>'
+
+            var radio4 = '<label>'+questionList[i].opts[3]+'<input type="radio" value="'+questionList[i].opts[3]+'" class="'+questionList[i].q+'" name="'+questionList[i].q+'"></label>'
+
+            arr += radio1
+            arr += radio2
+            arr += radio3
+            arr += radio4
         }
         // Now printing the questions all added up:
         $("#container").append(arr);
@@ -132,5 +144,7 @@ $(document).ready(function () {
 
     }  //write a function to evaluate your answers
 
-
+//To check right answers: if  $(".class:checked").val()===questionList[i].answer{wins++}
+//make a submit button
+// 
 });

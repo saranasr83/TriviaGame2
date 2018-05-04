@@ -14,8 +14,11 @@ h1{
     color: rgb(14, 88, 64);
     
 }
+h4 {
+    line-height: 80px;
+}
 #start{
-    margin-left: 520px;
+    margin-left: 570px;
     margin-top: 150px;
     width: 220px;
     height: 61px;
@@ -30,4 +33,8 @@ h1{
 #container{
     margin-left: 15%;
     margin-top: 5%;
+}
+label {
+    margin-right: 26px;
+    font-size: 20px;
 }

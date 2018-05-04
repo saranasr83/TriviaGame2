@@ -1,0 +1,33 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+body{
+    background-image: url("../images/background.jpg");
+    height: 100%; 
+    background-position: center;
+    background-size: cover;
+}
+h1{
+    text-align: center;
+    color: rgb(14, 88, 64);
+    
+}
+#start{
+    margin-left: 520px;
+    margin-top: 150px;
+    width: 220px;
+    height: 61px;
+}
+.hide {
+    display: none;
+}
+#timer{
+    margin-left: 40%;
+    margin-top: 5%;
+}
+#container{
+    margin-left: 15%;
+    margin-top: 5%;
+}

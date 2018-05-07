@@ -62,25 +62,54 @@ $(document).ready(function () {
     var gameData = {
         correctAnswer: 0,
         inCorrectAnswer: 0,
-        unAswered: 0,
+        unAnswered: 0,
         count: 0,
         timer: null
     }
+
 
     $("#start").on("click", function () {
         console.log("start game!");
 
         // hide start button 
         $("#start").addClass("hide");
+        //hide the done button
+        $("#done").removeClass("hide")
         // start and display timer
-        startTimer()
+        startTimer();
         // show questions
         displayQuestion();
+
     });
+
+    $("#done").on("click", function () {
+        endGame();
+        evaluation();
+    });
+
+
+
+    function endGame() {
+        console.log("finish game!")
+        //hide done button
+        $("#done").addClass("hide");
+        //hide the questions
+        $("#container").addClass("hide");
+        //hide the timer
+        $("#timer").addClass("hide");
+        //print all done on the screen
+        $("#done-msg").removeClass("hide");
+        //show the results
+        $("#correct").removeClass("hide");
+        $("#incorrect").removeClass("hide");
+        $("#unanswered").removeClass("hide");
+
+    }
+
 
     function startTimer() {
         // set initial time
-        var remainingTime = 120;
+        var remainingTime = 60;
         // show the existing text on the page by remove the hide class
         $("#timer").removeClass("hide");
         // display the initial time in the text that was show on the page after the hide class was removed.
@@ -92,6 +121,8 @@ $(document).ready(function () {
             if (remainingTime === 0) {
                 //The clearInterval() method clears a timer set with the setInterval() method.
                 clearInterval(gameData.timer);
+                endGame();
+                evaluation();
             }
 
             else {
@@ -109,14 +140,16 @@ $(document).ready(function () {
         var arr = "";
         //iterate through questionlist and display the questions on the screen
         for (i = 0; i < questionList.length; i++) {
+
             arr += "<h4>" + questionList[i].q + "</h4>"
-            var radio1 = '<label>'+ questionList[i].opts[0] +'<input type="radio" value="'+questionList[i].opts[0]+'" class="'+questionList[i].q+'" name="'+questionList[i].q+'"></label>'
 
-            var radio2 = '<label>'+questionList[i].opts[1]+'<input type="radio" value="'+questionList[i].opts[1]+'" class="'+questionList[i].q+'" name="'+questionList[i].q+'"> </label>'
+            var radio1 = '<label>' + questionList[i].opts[0] + '<input type="radio" value="' + questionList[i].opts[0] + '" class="' + questionList[i].q + '" name="' + questionList[i].q + '"></label>'
 
-            var radio3 = '<label>'+questionList[i].opts[2]+'<input type="radio" value="'+questionList[i].opts[2]+'" class="'+questionList[i].q+'" name="'+questionList[i].q+'"> </label>'
+            var radio2 = '<label>' + questionList[i].opts[1] + '<input type="radio" value="' + questionList[i].opts[1] + '" class="' + questionList[i].q + '" name="' + questionList[i].q + '"> </label>'
 
-            var radio4 = '<label>'+questionList[i].opts[3]+'<input type="radio" value="'+questionList[i].opts[3]+'" class="'+questionList[i].q+'" name="'+questionList[i].q+'"></label>'
+            var radio3 = '<label>' + questionList[i].opts[2] + '<input type="radio" value="' + questionList[i].opts[2] + '" class="' + questionList[i].q + '" name="' + questionList[i].q + '"> </label>'
+
+            var radio4 = '<label>' + questionList[i].opts[3] + '<input type="radio" value="' + questionList[i].opts[3] + '" class="' + questionList[i].q + '" name="' + questionList[i].q + '"></label>'
 
             arr += radio1
             arr += radio2
@@ -127,24 +160,46 @@ $(document).ready(function () {
         $("#container").append(arr);
         // console.log(arr);
 
-        //printing the options on screen and create a button
+
+
+
+    }
+    //write a function to evaluate your answers
+
+    //To check right answers: if  $(".class:checked").val()===questionList[i].answer{wins++}
+    function evaluation() {
+
+        //evaluate user input:
         for (i = 0; i < questionList.length; i++) {
 
-            //     var optionButton = $("<button>");
-            //     optionButton.addClass("btn btn-primary option");
-            //     optionButton.attr("data-group", gameData.count);
-            //     optionButton.text("<h5>"+questionList[i].opts+"</h5>");
-            // }
-
-            // console.log(questionList[i].opts)
-            // $("#container").append(optionButton);
-
+            //  console.log("question " + i +
+            //      " nameOneQ:" + questionList[i].q +
+            //      " user selected item:" + $('input[name="' + questionList[i].q + '"]:checked').val() + 
+            //      " user selected item is checked:" + $('input[name="' + questionList[i].q + '"]').is(':checked') + 
+            //      " the correct answer is: " + questionList[i].a
+            //  );
+            // if no answer is selected:
+            if ( !$('input[name="' + questionList[i].q + '"]:checked').is(':checked')) {
+                console.log("No answer selected case...");
+                gameData.unAnswered++
+                $("#result-3").html(gameData.unAnswered)
+            } 
+            else if ($('input[name="' + questionList[i].q + '"]:checked').val() === questionList[i].a) {
+                console.log("correct answer");
+                gameData.correctAnswer++
+                $("#result-1").html(gameData.correctAnswer)
+                
+            }
+            else if ($('input[name="' + questionList[i].q + '"]:checked').val() !== questionList[i].a) {
+                console.log("wrong answer");
+                gameData.inCorrectAnswer++
+                $("#result-2").html(gameData.inCorrectAnswer)
+                
+            }
         }
 
 
-    }  //write a function to evaluate your answers
+    }
 
-//To check right answers: if  $(".class:checked").val()===questionList[i].answer{wins++}
-//make a submit button
-// 
 });
+

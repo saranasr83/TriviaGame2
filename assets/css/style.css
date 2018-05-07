@@ -15,7 +15,7 @@ h1{
     
 }
 h4 {
-    line-height: 80px;
+    line-height: 40px;
 }
 #start{
     margin-left: 570px;
@@ -37,4 +37,29 @@ h4 {
 label {
     margin-right: 26px;
     font-size: 20px;
+}
+#done{
+    margin-left: 570px;
+    margin-top: 100px;
+    width: 220px;
+    height: 61px;
+}
+#done-msg {
+    font-size: 45px;
+    margin-left: 45%;
+    margin-top: 10%;
+}
+#correct {
+    font-size: 30px;
+    margin-left: 45%;
+    margin-top: 2%;
+    
+}
+#incorrect {
+    font-size: 30px;
+    margin-left: 45%;
+}
+#unanswered {
+    font-size: 30px;
+    margin-left: 45%;
 }

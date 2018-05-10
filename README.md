@@ -1,4 +1,4 @@
-# Project Name: TriviaGame(easier version)
+# Project Name: TriviaGame
 The TriviaGame is a cool game project that would challenge the player in answering some questions.
 
 ## What the project does
